@@ -1,11 +1,13 @@
 //Lesson-03 Component Lifecycle, Hooks, State, and Props
 //Exercise: React Bug Hunt – Fix the broken components in this folder
 import BugEffectLoop from './BugEffectLoop';
+import BugMutatedState from './BugMutatedState';
 
 export default function StudentWork() {
   return (
     <div>
       <BugEffectLoop />
+      <BugMutatedState />
     </div>
   );
 }
