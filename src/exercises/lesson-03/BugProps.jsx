@@ -1,5 +1,7 @@
 // src/exercises/lesson-03/BugProps.jsx
 
+import { useState } from 'react';
+
 /*
   BUG #3 — Props Not Updating
 
@@ -13,10 +15,10 @@
 */
 
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState('Hello, ' + name);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hi, ' + name + '!');
   }
 
   return (
@@ -29,3 +31,10 @@ export default function BugProps({ name = 'friend' }) {
 
 // Explanation:
 // (Write your explanation here)
+// Initialize state with the default greeting
+// Use the setter function to update the value and trigger a re-render
+/*
+React does not track regular variables for UI updates; it only monitors changes made to State or Props.
+By using the useState hook and its setter function (setMessage), we explicitly notify React that the data has changed, 
+which forces the component to re-render and display the updated greeting.
+*/

@@ -2,12 +2,14 @@
 //Exercise: React Bug Hunt – Fix the broken components in this folder
 import BugEffectLoop from './BugEffectLoop';
 import BugMutatedState from './BugMutatedState';
+import BugProps from './BugProps';
 
 export default function StudentWork() {
   return (
     <div>
       <BugEffectLoop />
       <BugMutatedState />
+      <BugProps />
     </div>
   );
 }
