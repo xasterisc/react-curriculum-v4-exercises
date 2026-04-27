@@ -7,9 +7,10 @@ export default function BugStrictMode() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const intervalID = setInterval(() => {
       setCount((c) => c + 1);
     }, 1000);
+    return () => clearInterval(intervalID);
   }, []);
 
   return (
@@ -21,3 +22,9 @@ export default function BugStrictMode() {
 }
 
 // Write your explanation of how StrictMode helps us catch this bug
+/*
+React StrictMode runs effects twice in development (mount → cleanup → mount) to expose side-effect bugs.
+In this example, the setInterval is created twice but never cleaned up,
+so multiple timers run at the same time and the counter increments faster than expected.
+StrictMode helps catch this by making the problem visible early
+*/
