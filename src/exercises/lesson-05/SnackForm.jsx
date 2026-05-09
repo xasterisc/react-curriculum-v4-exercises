@@ -31,6 +31,21 @@ export default function SnackForm({
   const handleFocusRating = () =>
     setTouched((prev) => ({ ...prev, rating: true }));
 
+  const validateName = (nameValue) => nameValue.trim().length > 0;
+  const validateRating = (ratingValue) => Boolean(ratingValue);
+  const getNameError = () => {
+    if (touched.name && !validateName(name)) {
+      return 'Snack name is required';
+    }
+    return null;
+  };
+  const getRatingError = () => {
+    if (touched.rating && !validateRating(rating)) {
+      return 'Please select a rating';
+    }
+    return null;
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
