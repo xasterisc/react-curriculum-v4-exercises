@@ -46,6 +46,9 @@ export default function SnackForm({
     return null;
   };
 
+  const nameError = getNameError();
+  const ratingError = getRatingError();
+
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -82,6 +85,8 @@ export default function SnackForm({
         />
       </div>
 
+      {nameError && <div className={styles.error}>{nameError}</div>}
+
       <div className={styles['field-container']}>
         <label className={styles['field-label']}>Rating:</label>
         <input
@@ -96,6 +101,8 @@ export default function SnackForm({
           onFocus={handleFocusRating}
         />
       </div>
+
+      {ratingError && <div className={styles.error}>{ratingError}</div>}
 
       <div className={styles['button-container']}>
         <button
