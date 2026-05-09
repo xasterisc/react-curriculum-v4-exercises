@@ -25,6 +25,12 @@ export default function SnackForm({
     setTouched({ name: false, rating: false });
   }, [editingSnack, isEditing]);
 
+  const handleName = (event) => setName(event.target.value);
+  const handleRating = (event) => setRating(event.target.value);
+  const handleFocusName = () => setTouched((prev) => ({ ...prev, name: true }));
+  const handleFocusRating = () =>
+    setTouched((prev) => ({ ...prev, rating: true }));
+
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -53,10 +59,12 @@ export default function SnackForm({
         <input
           type="text"
           name="name"
-          defaultValue={isEditing ? editingSnack.name : ''}
+          value={name}
           required
           className={styles['field-input']}
           placeholder="Enter snack name"
+          onChange={handleName}
+          onFocus={handleFocusName}
         />
       </div>
 
@@ -65,12 +73,14 @@ export default function SnackForm({
         <input
           type="number"
           name="rating"
-          defaultValue={isEditing ? editingSnack.rating : ''}
+          value={rating}
           required
           min="1"
           max="5"
           className={styles['field-input']}
           placeholder="Rate 1-5"
+          onChange={handleRating}
+          onFocus={handleFocusRating}
         />
       </div>
 
